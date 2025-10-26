@@ -8,6 +8,7 @@ import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
+import WhatWeDo from "./components/WhatWeDo";
 
 export default function App() {
   const navLinks = [
@@ -69,7 +70,7 @@ function ThemedApp({ navLinks }) {
         }}
       />
 
-      <main className="max-w-8xl mx-auto px-6 py-10">
+      <main className="w-full mx-auto ">
         <Hero onCTAClick={() => scrollTo("contact")} />
         <Services />
         <Pricing />

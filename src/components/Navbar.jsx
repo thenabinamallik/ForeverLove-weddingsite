@@ -16,8 +16,7 @@ export default function Navbar({
       : "bg-white/20 text-gray-900";
 
   return (
-    <header className={`fixed w-full z-40 top-4 ${theme === "dark" ? "" : ""}`}>
-      <div className={`max-w-7xl mx-auto px-6`}>
+    <header className={`px-4 fixed w-full z-40 top-4 ${theme === "dark" ? "" : ""}`}>
         <div
           className={`backdrop-blur rounded-2xl py-3 px-4 shadow-lg border border-transparent flex items-center justify-between ${containerClass}`}
         >
@@ -75,7 +74,6 @@ export default function Navbar({
             </div>
           </div>
         </div>
-      </div>
     </header>
   );
 }

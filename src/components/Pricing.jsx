@@ -1,59 +1,126 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { pricing } from "../data/siteData";
 import { useTheme } from "../context/ThemeContext";
 
 export default function Pricing() {
   const [theme] = useTheme();
+
   return (
-    <section id="pricing" className="mt-20 px-6">
+    <section id="pricing" className="mt-24 mb-20 px-6 text-center">
+      {/* Animated Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="text-sm text-roseAccent font-semibold">Pricing</div>
         <h2
-          className={`text-3xl md:text-4xl font-serif mt-2 ${
+          className={`text-3xl md:text-4xl font-serif ${
             theme === "dark" ? "text-luxuryGold" : "text-deepGray"
           }`}
         >
-          Perfect packages for every couple
+          Pricing
         </h2>
+
+        {/* Divider Line */}
+        <div className="flex justify-center items-center my-4">
+          <div
+            className={`w-16 h-[2px] ${
+              theme === "dark" ? "bg-luxuryGold" : "bg-roseAccent"
+            }`}
+          ></div>
+        </div>
+
+        <p
+          className={`text-lg md:text-xl font-light ${
+            theme === "dark" ? "text-slate-200" : "text-slate-600"
+          }`}
+        >
+          Perfect packages for every couple
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        {pricing.map((p, i) => (
+      {/* Pricing Cards */}
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {[
+          {
+            name: "Essential",
+            price: "$1,200",
+            features: [
+              "4 hours of coverage",
+              "Highlight video (3–5 mins)",
+              "1 cinematographer",
+              "Digital delivery",
+            ],
+          },
+          {
+            name: "Signature",
+            price: "$2,400",
+            features: [
+              "8 hours of coverage",
+              "Full wedding film (10–15 mins)",
+              "2 cinematographers",
+              "Drone footage",
+              "Custom soundtrack",
+            ],
+            highlight: true,
+          },
+          {
+            name: "Luxury",
+            price: "$3,800",
+            features: [
+              "Full-day cinematic coverage",
+              "Trailer + full feature film",
+              "3 cinematographers",
+              "Drone & behind-the-scenes edit",
+              "Hard drive delivery",
+            ],
+          },
+        ].map((pkg, i) => (
           <motion.div
-            key={p.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.12 }}
-            className={`p-6 rounded-2xl shadow-lg border ${
-              theme === "dark"
-                ? "border-white/5 bg-[rgba(255,255,255,0.02)] text-slate-100"
-                : "border-slate-200 bg-white text-slate-900"
+            key={i}
+            whileHover={{ scale: 1.03 }}
+            className={`p-8 rounded-2xl shadow-lg transition ${
+              pkg.highlight
+                ? theme === "dark"
+                  ? "bg-roseAccent/10 border border-roseAccent"
+                  : "bg-roseAccent/5 border border-roseAccent"
+                : theme === "dark"
+                ? "bg-[rgba(255,255,255,0.03)] border border-white/10"
+                : "bg-white border border-slate-200"
             }`}
           >
-            <div className="flex items-center justify-between">
-              <h4 className="text-lg font-semibold">{p.name}</h4>
-              <div className="text-2xl font-bold text-luxuryGold">
-                {p.price}
-              </div>
-            </div>
-            <ul
-              className={`mt-4 space-y-2 text-sm ${
-                theme === "dark" ? "text-slate-300" : "text-slate-600"
+            <h3
+              className={`text-2xl font-serif ${
+                theme === "dark" ? "text-luxuryGold" : "text-deepGray"
               }`}
             >
-              {p.perks.map((k) => (
-                <li key={k}>• {k}</li>
+              {pkg.name}
+            </h3>
+            <p
+              className={`mt-2 text-3xl font-semibold ${
+                theme === "dark" ? "text-roseAccent" : "text-roseAccent"
+              }`}
+            >
+              {pkg.price}
+            </p>
+
+            <ul className="mt-4 text-sm text-slate-400 space-y-2">
+              {pkg.features.map((f, j) => (
+                <li key={j}>{f}</li>
               ))}
             </ul>
-            <button className="mt-6 w-full py-2 rounded-lg bg-roseAccent text-deepGray font-medium">
-              Choose
-            </button>
+
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(212,169,65,0.4)",
+              }}
+              whileTap={{ scale: 0.96 }}
+              className="mt-6 px-6 py-3 rounded-full bg-luxuryGold text-deepGray font-medium hover:bg-roseAccent transition"
+            >
+              Choose Plan
+            </motion.button>
           </motion.div>
         ))}
       </div>

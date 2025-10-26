@@ -53,3 +53,6 @@ html.theme-dark body {
 .bg-roseAccent {
   background: var(--roseAccent) !important;
 }
+body{
+  overflow-x: hidden ;
+}
