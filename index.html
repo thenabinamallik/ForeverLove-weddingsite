@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forever Love — Cinematic</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Quick theme-init to apply stored theme quickly (prevents flash). Default is light so only apply dark if saved === 'dark' -->
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem("theme");
+          if (s === "dark")
+            document.documentElement.classList.add("theme-dark");
+          else document.documentElement.classList.add("theme-light");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

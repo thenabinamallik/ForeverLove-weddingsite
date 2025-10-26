@@ -1,0 +1,55 @@
+@import "tailwindcss";
+:root {
+  --deepGray: #0f111a;
+  --luxuryGold: #d4af37;
+  --roseAccent: #f7c6c7;
+  --text-light: #0b1220;
+}
+
+/* Theme utility classes added manually — we rely on Tailwind utilities for layout, but these make color tokens available */
+.theme-light {
+  --bg: #ffffff;
+  --text: var(--text-light);
+  --card-bg: #ffffff;
+}
+
+.theme-dark {
+  --bg: var(--deepGray);
+  --text: #e6eef8;
+  --card-bg: rgba(255, 255, 255, 0.02);
+}
+
+html.theme-light,
+html.theme-dark {
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+html.theme-light body {
+  background: var(--bg);
+  color: var(--text);
+}
+html.theme-dark body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.font-serif {
+  font-family: "Playfair Display", serif;
+}
+.font-sans {
+  font-family: "Poppins", sans-serif;
+}
+
+/* small helper to style luxury gold and rose accents */
+.text-luxuryGold {
+  color: var(--luxuryGold) !important;
+}
+.bg-luxuryGold {
+  background: var(--luxuryGold) !important;
+}
+.text-roseAccent {
+  color: var(--roseAccent) !important;
+}
+.bg-roseAccent {
+  background: var(--roseAccent) !important;
+}
