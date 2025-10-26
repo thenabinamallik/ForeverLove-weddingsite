@@ -8,7 +8,7 @@ import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
-import WhatWeDo from "./components/WhatWeDo";
+
 
 export default function App() {
   const navLinks = [
