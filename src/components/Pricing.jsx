@@ -25,7 +25,7 @@ export default function Pricing() {
         {/* Divider Line */}
         <div className="flex justify-center items-center my-4">
           <div
-            className={`w-16 h-[2px] ${
+            className={`w-16 h-0.5 ${
               theme === "dark" ? "bg-luxuryGold" : "bg-roseAccent"
             }`}
           ></div>

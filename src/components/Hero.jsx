@@ -46,7 +46,7 @@ export default function Hero({ onCTAClick = () => {} }) {
         }}
       >
         {carouselImages.map((src, i) => (
-          <div key={i} className="w-screen h-full flex-shrink-0 relative">
+          <div key={i} className="w-screen h-full shrink-0 relative">
             <img src={src} alt={`hero-${i}`} className="w-full h-full object-cover" />
             <div
               className="absolute inset-0"

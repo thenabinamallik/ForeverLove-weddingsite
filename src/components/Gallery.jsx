@@ -43,7 +43,7 @@ export default function Gallery() {
 
       {/* Masonry Grid */}
       <div
-        className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[150px] md:auto-rows-[150px] [grid-auto-flow:dense]"
+        className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[150px] md:auto-rows-[150px] [grid-flow-dense]"
       >
         {images.map((item, i) => (
           <motion.div
@@ -58,7 +58,7 @@ export default function Gallery() {
               className="w-full h-full object-cover transition-transform duration-300"
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-70" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-70" />
             {/* Title */}
             <div className="absolute bottom-3 left-3 text-white font-medium text-sm md:text-base tracking-wide drop-shadow-md">
               {item.title}
