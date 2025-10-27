@@ -2,14 +2,14 @@ export const services = [
   {
     title: "Wedding Films",
     desc: "Cinematic memories crafted with care.",
-    price: "$1500",
+    price: "₹50000",
     icon: "💍",
     images: ["/bg0.jpg", "/bg1.jpg", "/bg2.jpg", "/bg3.jpg", "/main1.webp"],
   },
   {
     title: "Engagement Shoots",
     desc: "Timeless portraits filled with warmth and personality.",
-    price: "$800",
+    price: "₹64989",
     icon: "📸",
     images: [
       "/image_1.jpg",
@@ -22,7 +22,7 @@ export const services = [
   {
     title: "Mehendi Shoots",
     desc: "A story of love before the vows — creatively told.",
-    price: "$1000",
+    price: "₹23847",
     icon: "🎥",
     images: [
       "/mehendi9.webp",
@@ -36,7 +36,7 @@ export const services = [
   {
     title: "Haldi Moments",
     desc: "Vibrant, joyful captures of your haldi celebration.",
-    price: "$900",
+    price: "₹20938",
     icon: "🌼",
     images: [
       "/haldi1.webp",
@@ -49,7 +49,7 @@ export const services = [
   {
     title: "Destination Weddings",
     desc: "Breathtaking visuals from stunning locations worldwide.",
-    price: "$3000",
+    price: "₹18272",
     icon: "🌅",
     images: [
       "/image_29.jpg",
@@ -62,7 +62,7 @@ export const services = [
   {
     title: "Highlight Reels",
     desc: "Short, emotional films capturing the essence of your day.",
-    price: "$1200",
+    price: "₹12432",
     icon: "🎞️",
     images: [
       "/image_39.webp",
@@ -75,7 +75,7 @@ export const services = [
   {
     title: "Save The Date Films",
     desc: "Creative short films that announce your big day in style.",
-    price: "$900",
+    price: "₹12893",
     icon: "💌",
     images: [
       "/image_14.webp",
