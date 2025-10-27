@@ -36,18 +36,13 @@ export const pricing = [
 
 export const team = [
   {
-    name: "Asha Rao",
-    role: "Lead Planner",
-    img: "https://randomuser.me/api/portraits/women/68.jpg",
+    name: "Nabina Mallik",
+    role: "Developer",
+    img: "",
   },
   {
-    name: "Rohit Menon",
-    role: "Creative Director",
-    img: "https://randomuser.me/api/portraits/men/65.jpg",
-  },
-  {
-    name: "Leena Joshi",
-    role: "Stylist",
-    img: "https://randomuser.me/api/portraits/women/43.jpg",
+    name: "Amar Naik",
+    role: "Developer",
+    img: "",
   },
 ];

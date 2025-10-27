@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { Mail, Phone, MapPin } from "lucide-react";
+import TitleTop from "./TitleTop";
 
 export default function Contact() {
   const [theme] = useTheme();
@@ -14,19 +15,10 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <div className="text-sm text-roseAccent font-semibold">Get in touch</div>
-        <h2
-          className={`text-3xl md:text-4xl font-serif mt-2 ${
-            theme === "dark" ? "text-luxuryGold" : "text-deepGray"
-          }`}
-        >
-          Let's plan your day
-        </h2>
+        <TitleTop title="Get in touch" subTitle="Let's plan your day"/>
       </motion.div>
-
-      {/* Content */}
       <div className="mt-8 w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-        {/* Cinematic Side Panel */}
+
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -64,13 +56,13 @@ export default function Contact() {
             {/* Contact Details */}
             <div className="mt-6 flex flex-col gap-3 text-sm text-white/80">
               <div className="flex justify-center items-center gap-2">
-                <Mail size={16} /> hello@cinemaweddings.com
+                <Mail size={16} /> hello@example.com
               </div>
               <div className="flex justify-center items-center gap-2">
-                <Phone size={16} /> +1 (234) 567-890
+                <Phone size={16} /> +91 12345 67890
               </div>
               <div className="flex justify-center items-center gap-2">
-                <MapPin size={16} /> Los Angeles, CA
+                <MapPin size={16} /> Dhenkanal, OD
               </div>
             </div>
           </div>

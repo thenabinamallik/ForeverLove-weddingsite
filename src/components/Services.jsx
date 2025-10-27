@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { services } from "../data/siteData";
 import { useTheme } from "../context/ThemeContext";
-import WhatWeDo from "./WhatWeDo";
+import TitleTop from "./TitleTop";
 
 export default function Services() {
   const [theme] = useTheme();
@@ -40,7 +40,7 @@ export default function Services() {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <WhatWeDo />
+        <TitleTop title="What We Do" subTitle="Services crafted with love"/>
       </motion.div>
 
       {/* Cards Grid */}

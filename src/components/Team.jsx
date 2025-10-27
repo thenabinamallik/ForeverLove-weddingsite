@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { team } from "../data/siteData";
 import { useTheme } from "../context/ThemeContext";
+import TitleTop from "./TitleTop";
 
 export default function Team() {
   const [theme] = useTheme();
@@ -12,16 +13,7 @@ export default function Team() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <div className="text-sm text-roseAccent font-semibold">
-          Meet the team
-        </div>
-        <h2
-          className={`text-3xl md:text-4xl font-serif mt-2 ${
-            theme === "dark" ? "text-luxuryGold" : "text-deepGray"
-          }`}
-        >
-          People who make magic
-        </h2>
+        <TitleTop title="Pricing" subTitle="Perfect packages for every couple"/>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
