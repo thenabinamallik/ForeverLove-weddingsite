@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
+import { pricing } from "../data/siteData"; // 👈 import your pricing data
 
 export default function Pricing() {
   const [theme] = useTheme();
@@ -42,46 +43,12 @@ export default function Pricing() {
 
       {/* Pricing Cards */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {[
-          {
-            name: "Essential",
-            price: "$1,200",
-            features: [
-              "4 hours of coverage",
-              "Highlight video (3–5 mins)",
-              "1 cinematographer",
-              "Digital delivery",
-            ],
-          },
-          {
-            name: "Signature",
-            price: "$2,400",
-            features: [
-              "8 hours of coverage",
-              "Full wedding film (10–15 mins)",
-              "2 cinematographers",
-              "Drone footage",
-              "Custom soundtrack",
-            ],
-            highlight: true,
-          },
-          {
-            name: "Luxury",
-            price: "$3,800",
-            features: [
-              "Full-day cinematic coverage",
-              "Trailer + full feature film",
-              "3 cinematographers",
-              "Drone & behind-the-scenes edit",
-              "Hard drive delivery",
-            ],
-          },
-        ].map((pkg, i) => (
+        {pricing.map((pkg, i) => (
           <motion.div
             key={i}
             whileHover={{ scale: 1.03 }}
             className={`p-8 rounded-2xl shadow-lg transition ${
-              pkg.highlight
+              pkg.name === "Classic"
                 ? theme === "dark"
                   ? "bg-roseAccent/10 border border-roseAccent"
                   : "bg-roseAccent/5 border border-roseAccent"
@@ -98,16 +65,14 @@ export default function Pricing() {
               {pkg.name}
             </h3>
             <p
-              className={`mt-2 text-3xl font-semibold ${
-                theme === "dark" ? "text-roseAccent" : "text-roseAccent"
-              }`}
+              className={`mt-2 text-3xl font-semibold text-roseAccent`}
             >
               {pkg.price}
             </p>
 
             <ul className="mt-4 text-sm text-slate-400 space-y-2">
-              {pkg.features.map((f, j) => (
-                <li key={j}>{f}</li>
+              {pkg.perks.map((perk, j) => (
+                <li key={j}>{perk}</li>
               ))}
             </ul>
 

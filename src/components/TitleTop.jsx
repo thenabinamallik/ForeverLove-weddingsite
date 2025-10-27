@@ -5,19 +5,13 @@ import { useTheme } from "../context/ThemeContext";
 export default function TitleTop({ title, subTitle }) {
   const [theme] = useTheme();
 
-  // 🎨 Background + text colors based on theme
-  const bgClass =
-    theme === "dark"
-      ? "bg-[#0f0f0f] text-slate-200"
-      : "bg-[#fffafc] text-deepGray";
-
-  const accentLine =
-    theme === "dark" ? "bg-luxuryGold" : "bg-roseAccent";
+  // 🎨 Accent color for divider
+  const accentLine = theme === "dark" ? "bg-luxuryGold" : "bg-roseAccent";
 
   return (
     <section
       id="what-we-do"
-      className={`z-50 mt-24 mb-16 px-6 text-center py-10 rounded-3xl shadow-sm transition-all duration-500 ${bgClass}`}
+      className="mt-24 mb-16 px-6 text-center"
     >
       {/* Animated Section Header */}
       <motion.div

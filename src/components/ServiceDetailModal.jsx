@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
-
 export default function ServiceDetailModal({ service, onClose }) {
   const [theme] = useTheme();
+  const [mainImage, setMainImage] = useState(service?.mainImage || service?.images?.[0]);
+
+  // Reset main image when modal opens for a new service
+  useEffect(() => {
+    setMainImage(service?.mainImage || service?.images?.[0]);
+  }, [service]);
+
   if (!service) return null;
 
   return (
@@ -31,9 +37,9 @@ export default function ServiceDetailModal({ service, onClose }) {
             {/* Image Section */}
             <div className="w-full md:w-1/2 h-[60vh] bg-black">
               <img
-                src={service.mainImage || service.images?.[0]}
+                src={mainImage}
                 alt={service.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-all duration-500"
               />
             </div>
 
@@ -68,8 +74,10 @@ export default function ServiceDetailModal({ service, onClose }) {
                       key={idx}
                       src={img}
                       alt={`related-${idx}`}
-                      className="w-1/3 aspect-3/4 object-cover rounded-xl cursor-pointer hover:opacity-80 transition"
-                      onClick={() => (service.mainImage = img)}
+                      className={`w-1/3 aspect-3/4 object-cover rounded-xl cursor-pointer hover:opacity-80 transition ${
+                        img === mainImage ? "ring-2 ring-roseAccent" : ""
+                      }`}
+                      onClick={() => setMainImage(img)}
                     />
                   ))}
                 </div>

@@ -26,7 +26,7 @@ export default function Contact() {
           className="relative rounded-2xl overflow-hidden h-[500px] flex items-center justify-center"
         >
           <img
-            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80"
+            src="./image_5.jpg"
             alt="contact-bg"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -56,13 +56,13 @@ export default function Contact() {
             {/* Contact Details */}
             <div className="mt-6 flex flex-col gap-3 text-sm text-white/80">
               <div className="flex justify-center items-center gap-2">
-                <Mail size={16} /> hello@example.com
+                <Mail size={16} /> nabinamallik2003@gmail.com
               </div>
               <div className="flex justify-center items-center gap-2">
-                <Phone size={16} /> +91 12345 67890
+                <Phone size={16} /> +91 6371849476
               </div>
               <div className="flex justify-center items-center gap-2">
-                <MapPin size={16} /> Dhenkanal, OD
+                <MapPin size={16} /> Bhubaneswar, OD
               </div>
             </div>
           </div>
