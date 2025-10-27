@@ -6,10 +6,10 @@ export default function Hero({ onCTAClick = () => {} }) {
   const titleClass = theme === "dark" ? "text-luxuryGold" : "text-deepGray";
 
   const images = [
-    "./src/assets/bg0.jpg",
-    "./src/assets/bg1.jpg",
-    "./src/assets/bg2.jpg",
-    "./src/assets/bg3.jpg",
+    "./bg0.jpg",
+    "./bg1.jpg",
+    "./bg2.jpg",
+    "./bg3.jpg",
   ];
 
   const [offset, setOffset] = useState(0);
