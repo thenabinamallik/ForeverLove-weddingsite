@@ -1,113 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import ServiceDetailModal from "./ServiceDetailModal";
 import { services } from "../data/siteData";
-import { useTheme } from "../context/ThemeContext";
 import TitleTop from "./TitleTop";
 
 export default function Services() {
-  const [theme] = useTheme();
-
-  const cardBg =
-    theme === "dark"
-      ? "bg-[rgba(255,255,255,0.04)] text-slate-100 border-white/5"
-      : "bg-white text-slate-900 border-slate-200";
-
-  const iconBg =
-    theme === "dark"
-      ? "bg-gradient-to-br from-roseAccent/20 to-luxuryGold/20"
-      : "bg-gradient-to-br from-roseAccent/10 to-luxuryGold/10";
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
-  };
+  const [selectedService, setSelectedService] = useState(null);
 
   return (
-    <section id="services" className="mt-20 px-6">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-      >
-        <TitleTop title="What We Do" subTitle="Services crafted with love"/>
-      </motion.div>
+    <section id="services" className="mt-20 px-6 relative">
+      {/* Title */}
+      <div >
+        <TitleTop title="What We Do" subTitle="Services crafted with love" />
+      </div>
 
-      {/* Cards Grid */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10"
-      >
-        {services.map((s, i) => (
-          <motion.div
-            key={s.title}
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.03,
-              boxShadow:
-                theme === "dark"
-                  ? "0 0 30px rgba(212,169,65,0.2)"
-                  : "0 0 20px rgba(212,169,65,0.15)",
-            }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className={`p-8 rounded-2xl shadow-md border ${cardBg} transition-all cursor-pointer`}
-          >
-            {/* Icon Section */}
-            <div
-              className={`w-16 h-16 ${iconBg} rounded-2xl flex items-center justify-center mb-4`}
-            >
-              <div className="text-4xl">{s.icon}</div>
-            </div>
+      {/* 🌳 Central Vertical Root Line */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-[3px] bg-linear-to-b from-rose-400 via-rose-300 to-rose-400 rounded-full z-0"></div>
 
-            {/* Content */}
-            <h3 className="text-xl font-semibold">{s.title}</h3>
-            <p
-              className={`mt-3 text-sm ${
-                theme === "dark" ? "text-slate-300" : "text-slate-600"
-              }`}
+      {/* 🌿 Service Cards */}
+      <div>
+        <div className="flex flex-col items-center gap-24 mt-16 relative z-10">
+        {services.map((s, i) => {
+          const isLeft = i % 2 === 0;
+          return (
+            <motion.div
+              key={i}
+              onClick={() => setSelectedService(s)} // ✅ Click works
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.25 }}
+              className={`relative flex w-full md:w-[80%] ${
+                isLeft ? "justify-start" : "justify-end"
+              } cursor-pointer`}
             >
-              {s.desc}
-            </p>
+              {/* 🌿 Branch Line */}
+              <div
+                className={`absolute top-1/2 w-[70px] h-[3px] bg-linear-to-r from-rose-400 to-rose-300 ${
+                  isLeft
+                    ? "right-[calc(50%+1.5px)]"
+                    : "left-[calc(50%+1.5px)] rotate-180"
+                }`}
+              ></div>
 
-            {/* Button */}
-            <motion.button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              whileHover={{
-                scale: 1.05,
-                boxShadow:
-                  theme === "dark"
-                    ? "0 0 15px rgba(233, 79, 79, 0.4)"
-                    : "0 0 15px rgba(233, 79, 79, 0.3)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className={`mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition ${
-                theme === "dark"
-                  ? "bg-roseAccent text-deepGray"
-                  : "bg-roseAccent text-deepGray"
-              }`}
-            >
-              Book a consult
-            </motion.button>
-          </motion.div>
-        ))}
-      </motion.div>
+              {/* 🌸 Card */}
+              <div
+                className={`relative shadow-xl rounded-3xl flex bg-white/90 backdrop-blur-md transition-all duration-300 overflow-hidden md:w-[45%] h-[340px] ${
+                  isLeft ? "flex-row" : "flex-row-reverse"
+                }`}
+              >
+                {/* Image */}
+                <div className="w-1/2 h-full overflow-hidden">
+                  <img
+                    src={s.images[0]}
+                    alt={s.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  />
+                </div>
+
+                {/* Info */}
+                <div className="flex flex-col justify-center p-6 w-1/2">
+                  <h3 className="text-2xl font-semibold text-deepGray mb-3 flex items-center gap-2">
+                    <span className="text-3xl">{s.icon}</span> {s.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed line-clamp-4">
+                    {s.desc}
+                  </p>
+                  <span className="mt-4 text-lg font-semibold text-roseAccent">
+                    {s.price}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+      </div>
+
+      {/* 💬 Modal (instant open/close) */}
+      {selectedService && (
+        <ServiceDetailModal
+          service={selectedService}
+          onClose={() => setSelectedService(null)}
+        />
+      )}
     </section>
   );
 }

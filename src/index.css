@@ -8,13 +8,13 @@
 
 /* Theme utility classes added manually — we rely on Tailwind utilities for layout, but these make color tokens available */
 .theme-light {
-  --bg: #ffffff;
+  --bg: #fffafc;
   --text: var(--text-light);
   --card-bg: #ffffff;
 }
 
 .theme-dark {
-  --bg: var(--deepGray);
+  --bg: #0f0f0f;
   --text: #e6eef8;
   --card-bg: rgba(255, 255, 255, 0.02);
 }

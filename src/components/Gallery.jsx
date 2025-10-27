@@ -3,48 +3,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import TitleTop from "./TitleTop";
-
-const images = [
-  {
-    src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
-    title: "Golden Hour Bride",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
-    title: "Elegant Silhouettes",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    title: "Cinematic Romance",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80",
-    title: "Pure Joy",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
-    title: "Timeless Beauty",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
-    title: "Vows & Dreams",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    title: "Whispered Promises",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80",
-    title: "Captured Emotion",
-  },
-];
+import { services } from "../data/siteData";
 
 export default function Gallery() {
   const [theme] = useTheme();
   const [selectedImage, setSelectedImage] = useState(null);
   const [spans, setSpans] = useState([]);
 
-  // Generate random spans once
+  // ✅ Collect all images from siteData
+  const allImages = services.flatMap((s) =>
+    s.images.map((img, index) => ({
+      src: img,
+      title: `${s.title} #${index + 1}`,
+    }))
+  );
+
+  // ✅ Generate random grid sizes for masonry layout
   useEffect(() => {
     const sizes = [
       "row-span-1 col-span-1",
@@ -52,7 +26,7 @@ export default function Gallery() {
       "row-span-1 col-span-2",
       "row-span-2 col-span-2",
     ];
-    const assignedSpans = images.map(
+    const assignedSpans = allImages.map(
       () => sizes[Math.floor(Math.random() * sizes.length)]
     );
     setSpans(assignedSpans);
@@ -60,23 +34,22 @@ export default function Gallery() {
 
   return (
     <section id="gallery" className="mt-20 px-6">
-      {/* Heading */}
+      {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-       
-        <TitleTop title="Gallery" subTitle="Moments we've created"/>
+        <TitleTop title="Gallery" subTitle="Moments We've Created" />
       </motion.div>
 
-      {/* Masonry Grid */}
+      {/* ✅ Masonry Layout */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[150px] md:auto-rows-[150px] [grid-flow-dense]">
-        {images.map((item, i) => (
+        {allImages.map((item, i) => (
           <motion.div
             key={i}
             whileHover={{ scale: 1.03 }}
-            onClick={() => setSelectedImage(item.src)}
+            onClick={() => setSelectedImage(item)}
             className={`relative overflow-hidden rounded-xl cursor-pointer ${spans[i]}`}
           >
             <img
@@ -84,9 +57,7 @@ export default function Gallery() {
               alt={item.title}
               className="w-full h-full object-cover transition-transform duration-300"
             />
-            {/* Gradient overlay */}
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-70" />
-            {/* Title */}
             <div className="absolute bottom-3 left-3 text-white font-medium text-sm md:text-base tracking-wide drop-shadow-md">
               {item.title}
             </div>
@@ -94,7 +65,7 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* Modal */}
+      {/* ✅ Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -110,17 +81,21 @@ export default function Gallery() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl w-[90%] max-h-[85vh] rounded-2xl overflow-hidden shadow-lg"
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="relative flex flex-col items-center justify-center p-4"
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={selectedImage}
-                alt="enlarged"
-                className="w-full h-full object-contain bg-black"
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                className="max-h-[85vh] max-w-[90vw] h-auto w-auto rounded-2xl object-contain shadow-2xl"
               />
+              <p className="text-white text-lg font-medium mt-3">
+                {selectedImage.title}
+              </p>
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-3 right-3 bg-black/60 text-white p-2 rounded-full hover:bg-black transition"
+                className="absolute top-6 right-6 bg-black/60 text-white p-2 rounded-full hover:bg-black transition"
               >
                 <X size={22} />
               </button>
